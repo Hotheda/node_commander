@@ -5,11 +5,10 @@ interface Props {
 }
 
 const SearchResults:React.FC<Props> = ({searchData, selectItem}) => {
-    console.log("From searchlist: " + searchData)
+    //console.log("From searchlist: " + searchData)
     
     var dataToPrint = [];
-    
-    
+       
     if(searchData)
     dataToPrint = searchData.map((item:any) => {
         return(

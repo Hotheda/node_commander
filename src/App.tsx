@@ -14,7 +14,6 @@ interface item {
   howTo:string
 }
 
-
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [searchData, setSearchData] = useState();
@@ -41,17 +40,12 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Node commander</h1>
+    <div className="BaseApp">
+        <h1 className="app_topic">Node commander</h1>
         <AddCommand/>
-        <hr/>
         <Search searchForBtn = {searchForBtn}/>
-        <hr/>
         <SearchResults searchData = {searchData} selectItem = {selectItem} />
-        <hr/>
         <Command selectedItem = {selectedItem} />
-      </header>
     </div>
   );
 }

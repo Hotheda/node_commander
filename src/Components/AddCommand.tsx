@@ -27,8 +27,6 @@ const AddCommand:React.FC = () => {
 
     const addToDB = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        //check for all fields to be filled
-        console.log("Json som skickas:" + JSON.stringify(myData))
         postData();
         setAddNew(!addNew);
     }
@@ -37,22 +35,21 @@ const AddCommand:React.FC = () => {
         var newData:dbData = myData;
         switch(e.target.id){
             case"name":
-                newData.name=e.target.value;
+                setMyData({...myData, name: e.target.value});
                 return;
             case"platform":
-                newData.platform=e.target.value;
+                setMyData({...myData, platform: e.target.value});
                 return;
             case"description":
-                newData.description=e.target.value;
+                setMyData({...myData, description: e.target.value});
                 return;
             case"options":
-                newData.options=e.target.value;
+                setMyData({...myData, options: e.target.value});
                 return;
             case"howTo":
-                newData.howTo=e.target.value;
+                setMyData({...myData, howTo: e.target.value});
                 return;
         }
-        setMyData(newData);
     }
     
     if(addNew)
@@ -60,13 +57,13 @@ const AddCommand:React.FC = () => {
         <div>
             <form>
                 <h3>Add new item</h3>
-                <label>Name: </label><input onChange={(e)=>onTextChange(e)} id="name" placeholder="name" type="Text" required/><br/>
-                <label>Platform: </label><input onChange={(e)=>onTextChange(e)} id="platform" placeholder="Platform" type="Text" /><br/>
-                <label>Description: </label><input onChange={(e)=>onTextChange(e)} id="description" placeholder="Description" type="Text" /><br/>
-                <label>Options: </label><input onChange={(e)=>onTextChange(e)} id="options" placeholder="Options" type="Text" /><br/>
-                <label>Example: </label><input onChange={(e)=>onTextChange(e)} id="howTo" placeholder="Example" type="Text" /><br/>
-                <button onClick={(e)=>{addToDB(e)}} >Add command</button>
-                <button onClick={()=>{setAddNew(!addNew)}} >Cancel</button>
+                <label>Name: </label><input onChange={(e)=>onTextChange(e)} id="name" value={myData.name} placeholder="name" type="Text" required/><br/>
+                <label>Platform: </label><input onChange={(e)=>onTextChange(e)} id="platform" value={myData.platform} placeholder="Platform" type="Text" /><br/>
+                <label>Description: </label><input onChange={(e)=>onTextChange(e)} id="description" value={myData.description} placeholder="Description" type="Text" /><br/>
+                <label>Options: </label><input onChange={(e)=>onTextChange(e)} id="options" value={myData.options} placeholder="Options" type="Text" /><br/>
+                <label>Example: </label><input onChange={(e)=>onTextChange(e)} id="howTo" value={myData.howTo} placeholder="Example" type="Text" /><br/>
+                <button onClick={(e) => {addToDB(e)}} >Add command</button>
+                <button onClick={() => { setAddNew(!addNew); setMyData({name:"",platform:"",description:"",options:"",howTo:""}); }} >Cancel</button>
             </form>
         </div>
     )
