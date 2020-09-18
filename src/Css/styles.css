@@ -17,7 +17,7 @@ body{
     text-shadow: 3px 3px rgba(0, 0, 0, 0.904);
     color: rgb(151, 194, 52);
     border: solid 0px rgb(0, 0, 0);
-    background-color: rgb(109, 100, 100);
+    background-color: rgb(110, 110, 110);
     box-shadow: 2px 2px black;
 }
 
@@ -43,13 +43,17 @@ body{
     height: 25px;
     color: white;
     background-color: black;
-
+    outline: none;
 }
 .search_button{
-    width: 100px;
-    height: 50px;
+    width: fit-content;
+    height: 35px;
     margin-left: 20px;
     border: none;
-    background-color: aqua;
+    font-size: 19px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    background-color: rgb(155, 155, 155);
     box-shadow: 3px 3px black;
+    outline: none;
 }

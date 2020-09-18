@@ -29,8 +29,8 @@ const App: React.FC = () => {
         .catch(err => console.log("Error ", err))
   }
 
-  const searchForBtn = (searchstring:string) => {
-    //console.log("Search for: " + searchstring)
+  const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
+    e.preventDefault();
     getData(searchstring);
   }
 
