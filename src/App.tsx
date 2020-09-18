@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AddCommand from './Components/AddCommand';
 import Command from './Components/Command'
 import Search from './Components/Search'
 import SearchResults from './Components/SearchResults';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <h1>Node commander</h1>
+        <AddCommand/>
         <hr/>
         <Search searchForBtn = {searchForBtn}/>
         <hr/>
