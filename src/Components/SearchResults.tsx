@@ -12,16 +12,29 @@ const SearchResults:React.FC<Props> = ({searchData, selectItem}) => {
     if(searchData)
     dataToPrint = searchData.map((item:any) => {
         return(
-            <li key = {item.id} onClick = {()=>{selectItem(item)}} >Name: {item.name}</li>
+            <li className = "result_listitem" key = {item.id} onClick = {()=>{selectItem(item)}} >
+                <p>{item.name.toUpperCase()}</p>
+                <p>{item.platform.toUpperCase()}</p>
+            </li>
             )
         })
         
     return(
-        <div>
-            <h3>Results</h3>
-        <ul>
-            {dataToPrint}
-        </ul>
+        <div className="result_background">
+            <div className = "result_div">
+                {/*<h3 className = "result_topic">-=&lt; R E S U L T S &gt;=-</h3>*/}
+                <ul className = "result_list">
+                    <li className = "result_listitem result_listtopic" >
+                        <p>NAME</p>
+                        <p>PLATFORM</p>
+                    </li>
+                    <li className = "result_listitem result_listtopic" >
+                        <p>----------</p>
+                        <p>----------</p>
+                    </li>
+                    {dataToPrint}
+                </ul>
+            </div>
         </div>
     )
 }

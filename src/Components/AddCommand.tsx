@@ -8,14 +8,19 @@ interface dbData {
     howTo:  string
 };
 
+interface Props {
+    addNew: boolean,
+    setAddNew: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const AddCommand:React.FC = () => {
-    const [addNew, setAddNew] = useState<boolean>(false)
+
+const AddCommand:React.FC<Props> = ({addNew, setAddNew}) => {
+    //const [addNew, setAddNew] = useState<boolean>(false)
     
     const [myData, setMyData] = useState<dbData>({name:"",platform:"",description:"",options:"",howTo:""});
     
     const postData = ()=>{
-        fetch('http://192.168.1.153:5555/addpost', {
+        fetch('http://odehammar.com:5555/addpost', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(myData)
@@ -29,6 +34,7 @@ const AddCommand:React.FC = () => {
         e.preventDefault();
         postData();
         setAddNew(!addNew);
+        resetData();
     }
 
     const onTextChange = (e:React.ChangeEvent<HTMLInputElement>)=> {
@@ -51,26 +57,42 @@ const AddCommand:React.FC = () => {
                 return;
         }
     }
+
+    const resetData = () => {
+        setMyData({name:"",platform:"",description:"",options:"",howTo:""});
+    }
     
     if(addNew)
     return(
-        <div>
-            <form>
+        <form>
+            <div className="add_command_div">
                 <h3>Add new item</h3>
-                <label>Name: </label><input onChange={(e)=>onTextChange(e)} id="name" value={myData.name} placeholder="name" type="Text" required/><br/>
-                <label>Platform: </label><input onChange={(e)=>onTextChange(e)} id="platform" value={myData.platform} placeholder="Platform" type="Text" /><br/>
-                <label>Description: </label><input onChange={(e)=>onTextChange(e)} id="description" value={myData.description} placeholder="Description" type="Text" /><br/>
-                <label>Options: </label><input onChange={(e)=>onTextChange(e)} id="options" value={myData.options} placeholder="Options" type="Text" /><br/>
-                <label>Example: </label><input onChange={(e)=>onTextChange(e)} id="howTo" value={myData.howTo} placeholder="Example" type="Text" /><br/>
-                <button onClick={(e) => {addToDB(e)}} >Add command</button>
-                <button onClick={() => { setAddNew(!addNew); setMyData({name:"",platform:"",description:"",options:"",howTo:""}); }} >Cancel</button>
+                <div className="add_command_section">
+                    <label>Name: </label><input onChange={(e)=>onTextChange(e)} autoComplete="off" spellCheck="false" id="name" value={myData.name} type="Text" required/><br/>
+                </div>
+                <div className="add_command_section">
+                    <label>Platform: </label><input onChange={(e)=>onTextChange(e)} autoComplete="off" spellCheck="false" id="platform" value={myData.platform} type="Text" /><br/>
+                </div>
+                <div className="add_command_section">
+                    <label>Description: </label><input onChange={(e)=>onTextChange(e)} autoComplete="off" spellCheck="false" id="description" value={myData.description} type="Text" /><br/>
+                </div>
+                <div className="add_command_section">
+                    <label>Options: </label><input onChange={(e)=>onTextChange(e)} autoComplete="off" spellCheck="false" id="options" value={myData.options} type="Text" /><br/>
+                </div>
+                <div className="add_command_section">
+                    <label>Example: </label><input onChange={(e)=>onTextChange(e)} autoComplete="off" spellCheck="false" id="howTo" value={myData.howTo}  type="Text" /><br/>
+                </div>
+                <div className="add_command_section">
+                    <button className="button" onClick={(e) => {addToDB(e)}} >Add command</button>
+                    <button className="button" onClick={() => { setAddNew(!addNew); resetData(); }} >Cancel</button>
+                </div>
+            </div>
             </form>
-        </div>
     )
 
     return(
-        <div>
-            <button onClick={()=>{setAddNew(!addNew)}} >Add command</button>
+        <div className="add_command_button_div">
+            <button className="button" onClick={()=>{setAddNew(!addNew)}} >Add command</button>
         </div>
     )
 }

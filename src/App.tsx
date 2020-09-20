@@ -18,8 +18,10 @@ const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [searchData, setSearchData] = useState();
 
+  const [addNew, setAddNew] = useState<boolean>(false)
+
   const getData = (searchString:string) => {
-    fetch('http://192.168.1.153:5555/getposts/'+searchString)
+    fetch('http://odehammar.com:5555/getposts/'+searchString)
         .then(res => res.json())
         .then(data => {
             if(data)
@@ -41,11 +43,16 @@ const App: React.FC = () => {
 
   return (
     <div className="BaseApp">
-        <h1 className="app_topic">Node commander</h1>
-        <AddCommand/>
-        <Search searchForBtn = {searchForBtn}/>
-        <SearchResults searchData = {searchData} selectItem = {selectItem} />
-        <Command selectedItem = {selectedItem} />
+        <div className="dos_background">
+        <div className="app_topic">
+          <p>NODE COMMANDER v1.0 </p>
+          <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
+        </div>
+          <AddCommand addNew={addNew} setAddNew={setAddNew}/>
+          <Search searchForBtn = {searchForBtn} addNew={addNew}/>
+          <SearchResults searchData = {searchData} selectItem = {selectItem} />
+          <Command selectedItem = {selectedItem} />
+        </div>
     </div>
   );
 }
