@@ -2,14 +2,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 1vw;
+    font-family: monospace;
+    font-weight: 700;
 }
 body{
     padding: 0;
     margin: 0;
     background: rgb(175, 175, 175);
-    font-family: Arial, Helvetica, sans-serif;
-    font-family: monospace;
-    width: 100%;
 }
 
 .dos_background{
@@ -17,7 +17,6 @@ body{
     height: 90vh;
     width: 50vw;
     background-color: black;
-    /*border: 2px dashed white;*/
 }
 
 ::selection{
@@ -27,8 +26,6 @@ body{
 
 .button{
     border: none;
-    font-size: 1vw;
-    font-weight: 700;
     color: rgb(0, 0, 0);
     background-color: rgb(155, 155, 155);
     box-shadow: 3px 3px yellowgreen;
@@ -38,7 +35,6 @@ body{
 }
 
 input{
-    font-size: 1vw;
     font-family: monospace;
     color: white;
     background-color: black;
@@ -48,8 +44,6 @@ input{
 
 .app_topic{
     width: 100%;
-    font-weight: 600;
-    font-size: .8vw;
     height: fit-content;
     text-align: center;
     margin: 0 auto;
@@ -107,7 +101,7 @@ input{
 }
 .search_input{
     padding-left: .5vw;
-    width: 30vw;
+    width: 25vw;
 }
 
 input:focus {
@@ -118,10 +112,6 @@ input:focus {
       border-color: red;
     }
   }
-.search_button{
-    /*width: 7vw;
-    height: 35px;*/
-}
 
 .result_background{
     width: 100%;
@@ -131,19 +121,16 @@ input:focus {
     justify-content: center;
 }
 .result_div{
-    width: 35vw;
+    width: 40vw;
     text-align: center;
 }
 .result_topic{
-    font-size: 1.3vw;
     width: fit-content;
     margin: 0 auto;
     padding: 2vh 0 2vh 0;
 }
 .result_list{
     list-style-type: none;
-    font-size: .9vw;
-    font-weight: 700;
 }
 .result_listitem{
     display: flex;
@@ -153,10 +140,11 @@ input:focus {
     text-align: left;
     width: 5vw;
     margin: 0 2vw;
+    width: 8vw;
 }
 .result_listtopic p{
-    /*border-bottom: 2px dotted white;*/
     margin-bottom: 0.6vw;
+    width: 8vw;
 }
 
 .command_background{
@@ -168,13 +156,10 @@ input:focus {
     bottom: 0vh;
 }
 .command_background{
-    font-size: 1vw;
     color: yellowgreen;
 }
 
 .command_background p::after{
-    font-size: 1vw;
-    font-weight: 900;
     position: absolute;
     content: "=";
     left: -2.5vw;
@@ -183,8 +168,6 @@ input:focus {
 
 .command_topic{
     position: relative;
-    font-size: 1.5vw;
-    font-weight: 300;
     display: flex;
 }
 .command_topic::before{
@@ -192,40 +175,36 @@ input:focus {
     position: absolute;
     bottom: 0vh;
     left: -8vw;
-    font-size: 1.2vw;
 }
 
 .command_platform{
     position: relative;
 }
 .command_platform::before{
-    content: "Platform:";
+    content: "Platform";
     position: absolute;
     bottom: 0vh;
     left: -8vw;
-    font-size: .7vw;
 }
 
 .command_description{
     position: relative;
 }
 .command_description::before{
-    content: "Description:";
+    content: "Description";
     position: absolute;
     bottom: 0vh;
     left: -8vw;
-    font-size: .7vw;
 }
 
 .command_options{
     position: relative;
 }
 .command_options::before{
-    content: "Options:";
+    content: "Options";
     position: absolute;
     bottom: 0vh;
     left: -8vw;
-    font-size: .7vw;
 }
 
 .command_example{
@@ -233,20 +212,25 @@ input:focus {
 
 }
 .command_example::before{
-    content: "Example:";
+    content: "Example";
     position: absolute;
     bottom: 0vh;
     left: -8vw;
-    font-size: .7vw;
 }
 
 .command_buttons_div{
     display: flex;
     justify-content: space-between;
+    width: 100%;
     padding-top: 3vh;
 }
 
+
+/*** RESPONSIVE ***/
 @media screen and (max-width: 600px){
+    *,*::before,*::after{
+        font-size: 4vw;
+    }
     .dos_background{
         margin: 0 0;
         height: 100vh;
@@ -254,13 +238,12 @@ input:focus {
 
     }
     .button{
-        font-size: 3vw;
         height: 8vw;
-        width: 20vw;
+        width: 25vw;
+        margin: 0 2vw;
     }
     .result_div{
         width: 100vw;
-        font-size: 6vw;
     }
     .result_listitem p{    
         text-align: left;
@@ -268,56 +251,22 @@ input:focus {
         margin: 0 2vw;
     }
 
-
-    *, ::before, ::after {
-        font-size: 3vw;
-    }
-
-    input{
-        font-size: 3vw;
-    }
     .command_background p::after{
-        font-size: 1vw;
-        font-weight: 900;
         position: absolute;
         content: "=";
         left: -2.5vw;
         bottom: 0;
     }
 
-    
-    .command_topic{
-        font-size: 5vw;
+    .topic::before{
+        left: -32vw;
     }
-    .command_topic::before{
-        font-size: 3vw;
-        left: -28vw;
-    }
-    .command_platform::before{
-        font-size: 3vw;
-        left: -28vw;
-    }
-    .command_description::before{
-        font-size: 3vw;
-        left: -28vw;
-    }
-    .command_options::before{
-        font-size: 3vw;
-        left: -28vw;
-    }
-    .command_example::before{
-        font-size: 3vw;
-        left: -28vw;
-    }
-
     .command_background{
         margin-left: 40%;
         width: 50%;
-        font-size: 4vw;
     }
     
     .command_background p::after{
-        font-size: 3vw;
         left: -5vw;
     }
 
