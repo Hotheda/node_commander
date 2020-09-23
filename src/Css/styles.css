@@ -20,7 +20,7 @@ body{
 }
 
 ::selection{
-    color: black;
+    color:black;
     background: rgba(255, 255, 255, 0.95);
 }
 
@@ -40,6 +40,7 @@ input{
     background-color: black;
     outline: none;
     border: none;
+    background-color: rebeccapurple;
 }
 
 .app_topic{
@@ -102,19 +103,38 @@ input{
 .search_input{
     padding-left: .5vw;
     width: 25vw;
+    height: 0;
+    width: 0;
+    opacity: 0;
 }
 
-input:focus {
-    animation: PulseAttention 1.5s cubic-bezier(.215, .61, .355, 1) forwards infinite;
-  }
-  @keyframes PulseAttention {
+.search_input_paragraf{
+    position: relative;
+    width: fit-content;
+    left: 0;
+    top: 0;
+    color: white;
+}
+.search_input_paragraf::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "_";
+    background-color: white;
+    color: white;
+    animation: blink_cursor 1s infinite;
+}
+
+@keyframes blink_cursor {
     50% {
-      border-color: red;
+        background-color: black;
+        color: black;
     }
-  }
+}
 
 .result_background{
     width: 100%;
+    height: 40vh;
     background: black;
     color: white;
     display: flex;    
@@ -150,10 +170,9 @@ input:focus {
 .command_background{
     position: absolute;
     color: white;
-    height: 40vh;
     width: 20vw;
     margin: 0 10vw 0 20vw;
-    bottom: 0vh;
+    /*bottom: 0vh;*/
 }
 .command_background{
     color: yellowgreen;
@@ -168,33 +187,26 @@ input:focus {
 
 .command_topic{
     position: relative;
-    display: flex;
-}
-.command_topic::before{
-    content: "Name";
-    position: absolute;
-    bottom: 0vh;
-    left: -8vw;
 }
 
-.command_platform{
+.topic{
     position: relative;
+}
+
+.topic::before{
+    position: absolute;
+    bottom: 0vh;
+    left: -10vw;
+}
+
+.command_topic::before{
+    content: "Name";
 }
 .command_platform::before{
     content: "Platform";
-    position: absolute;
-    bottom: 0vh;
-    left: -8vw;
-}
-
-.command_description{
-    position: relative;
 }
 .command_description::before{
     content: "Description";
-    position: absolute;
-    bottom: 0vh;
-    left: -8vw;
 }
 
 .command_options{
@@ -202,20 +214,10 @@ input:focus {
 }
 .command_options::before{
     content: "Options";
-    position: absolute;
-    bottom: 0vh;
-    left: -8vw;
 }
 
-.command_example{
-    position: relative;
-
-}
 .command_example::before{
     content: "Example";
-    position: absolute;
-    bottom: 0vh;
-    left: -8vw;
 }
 
 .command_buttons_div{

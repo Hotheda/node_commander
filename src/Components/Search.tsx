@@ -19,8 +19,9 @@ const Search:React.FC<ClickProps> = ({searchForBtn, addNew}) => {
                 <form>
                     <div className="search_input_div">
                         <div>
-                            <label className="search_input">{inputlabel}</label>
+                            {/*<label className="search_input">{inputlabel}</label>*/}
                             <input className="search_input" autoFocus={true} onBlur={({ target }) => focusInput(target)} autoComplete="off" value={searchString} spellCheck="false" onChange = {(e)=>setSearchString(e.target.value)} />
+                            <p className = "search_input_paragraf">{inputlabel} {searchString}.</p>
                         </div>
                         <button className="search_button button" onClick = {(e) => searchForBtn(searchString, e)} >&lt; Search &gt;</button>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddCommand from './Components/AddCommand';
 import Command from './Components/Command'
 import Search from './Components/Search'
@@ -19,6 +19,10 @@ const App: React.FC = () => {
   const [searchData, setSearchData] = useState();
 
   const [addNew, setAddNew] = useState<boolean>(false)
+
+  useEffect  (() => {
+    console.log("test")
+  }, []);
 
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
