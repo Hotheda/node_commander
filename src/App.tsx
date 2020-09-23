@@ -20,10 +20,6 @@ const App: React.FC = () => {
 
   const [addNew, setAddNew] = useState<boolean>(false)
 
-  useEffect  (() => {
-    console.log("test")
-  }, []);
-
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
         .then(res => res.json())
@@ -40,6 +36,10 @@ const App: React.FC = () => {
     getData(searchstring);
   }
 
+  const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
+    console.log(e.key);
+  }
+
   const selectItem = (item:any) => {
     setSelectedItem(item);
 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
-          <Search searchForBtn = {searchForBtn} addNew={addNew}/>
+          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew}/>
           <SearchResults searchData = {searchData} selectItem = {selectItem} />
           <Command selectedItem = {selectedItem} />
         </div>
