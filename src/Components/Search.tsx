@@ -28,7 +28,10 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => 
                                 autoComplete="off" value={searchString}
                                 spellCheck="false"
                                 onChange = {(e) => setSearchString(e.target.value)}
-                                onKeyDown = {(e) => handleKeypress(e)}
+                                onKeyDown = { (e) =>{
+                                    e.currentTarget.selectionStart = searchString.length
+                                    handleKeypress(e)
+                                }}
                             />
                             <p className = "search_input_paragraf">{inputlabel} {searchString}.</p>
                         </div>
