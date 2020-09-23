@@ -38,7 +38,7 @@ const AddCommand:React.FC<Props> = ({addNew, setAddNew}) => {
     }
 
     const onTextChange = (e:React.ChangeEvent<HTMLInputElement>)=> {
-        var newData:dbData = myData;
+        /*var newData:dbData = myData;*/
         switch(e.target.id){
             case"name":
                 setMyData({...myData, name: e.target.value});

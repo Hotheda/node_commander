@@ -7,6 +7,7 @@ interface ClickProps {
 
 const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => {
     const [searchString, setSearchString] = useState<string>("")
+    const [inputlabel, setInputLabel] = useState<string>("Search :>")
 
     const focusInput = (target:EventTarget & HTMLInputElement) => {
         if(!addNew){
@@ -15,14 +16,12 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => 
         }
     }
 
-    var inputlabel = "Search :>"
     return(
         <div className="search_div">
             <h3 className="search_topic"> Search for:  </h3>
                 <form>
                     <div className="search_input_div">
                         <div>
-                            {/*<label className="search_input">{inputlabel}</label>*/}
                             <input className="search_input" autoFocus={true}
                                 onBlur={({ target }) => focusInput(target)}
                                 autoComplete="off" value={searchString}
@@ -33,7 +32,7 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => 
                                     handleKeypress(e)
                                 }}
                             />
-                            <p className = "search_input_paragraf">{inputlabel} {searchString}.</p>
+                            <p className = "search_input_paragraf">{inputlabel}{searchString}.</p>
                         </div>
                         <button className="search_button button" onClick = {(e) => searchForBtn(searchString, e)} >&lt; Search &gt;</button>
                 </div>

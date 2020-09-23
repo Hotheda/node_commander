@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AddCommand from './Components/AddCommand';
 import Command from './Components/Command'
 import Search from './Components/Search'
 import SearchResults from './Components/SearchResults';
 
 // går att använda för att inte få undefined?
-interface item {
+interface commandItem {
   id:number,
   name:string,
   platform:string,
@@ -17,6 +17,7 @@ interface item {
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [searchData, setSearchData] = useState();
+  const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
 
   const [addNew, setAddNew] = useState<boolean>(false)
 
@@ -26,7 +27,6 @@ const App: React.FC = () => {
         .then(data => {
             if(data)
               setSearchData(data);
-              //console.log(searchData);
         })
         .catch(err => console.log("Error ", err))
   }
