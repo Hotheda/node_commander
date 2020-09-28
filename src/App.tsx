@@ -54,7 +54,7 @@ const App: React.FC = () => {
         </div>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew}/>
-          <SearchResults searchData = {searchData} selectItem = {selectItem} />
+          <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
           <Command selectedItem = {selectedItem} />
         </div>
     </div>

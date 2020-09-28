@@ -153,8 +153,20 @@ input{
     list-style-type: none;
 }
 .result_listitem{
+    /*position: relative;*/
     display: flex;
     justify-content: center;
+}
+.selected_listitem{
+    color: yellowgreen;
+}
+.selected_listitem::before{
+    color: yellowgreen;
+    content: "<";
+}
+.selected_listitem::after{
+    color: yellowgreen;
+    content: ">";
 }
 .result_listitem p{    
     text-align: left;

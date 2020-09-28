@@ -1,16 +1,26 @@
 import React from 'react'
 interface Props {
-    searchData:any;
+    searchData: any;
     selectItem: (id:any) => void;
+    selectedItem: any;
 }
 
-const SearchResults:React.FC<Props> = ({searchData, selectItem}) => {
+const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem}) => {
     //console.log("From searchlist: " + searchData)
     
     var dataToPrint = [];
        
     if(searchData)
     dataToPrint = searchData.map((item:any) => {
+        if(selectedItem)
+            if(selectedItem.id === item.id)
+                return(
+                    <li className = "result_listitem selected_listitem" key = {item.id} onClick = {()=>{selectItem(item)}} >
+                        <p>{item.name.toUpperCase()}</p>
+                        <p>{item.platform.toUpperCase()}</p>
+                    </li>
+                )
+
         return(
             <li className = "result_listitem" key = {item.id} onClick = {()=>{selectItem(item)}} >
                 <p>{item.name.toUpperCase()}</p>
