@@ -29,6 +29,7 @@ const App: React.FC = () => {
               setSearchData(data);
         })
         .catch(err => console.log("Error ", err))
+        setSelectedItem(0)
   }
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
@@ -37,13 +38,15 @@ const App: React.FC = () => {
   }
 
   const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
-    console.log(e.key);
+    if( e.key==="ArrowUp" && selectedItem > 0 ){
+      setSelectedItem( selectedItem - 1 )
+    }else if (e.key === "ArrowDown" && selectedItem<searchData.length - 1 ){
+      setSelectedItem( selectedItem + 1 )
+    }
   }
 
   const selectItem = (index:number) => {
     setSelectedItem(index);
-    console.log("index: ", index)
-    console.log(searchData[selectedItem])
   }
 
   return (
