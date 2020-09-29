@@ -15,8 +15,8 @@ interface commandItem {
 }
 
 const App: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<any>(null)
-  const [searchData, setSearchData] = useState();
+  const [selectedItem, setSelectedItem] = useState<number>(0)
+  const [searchData, setSearchData] = useState([]);
   const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
 
   const [addNew, setAddNew] = useState<boolean>(false)
@@ -40,9 +40,10 @@ const App: React.FC = () => {
     console.log(e.key);
   }
 
-  const selectItem = (item:any) => {
-    setSelectedItem(item);
-
+  const selectItem = (index:number) => {
+    setSelectedItem(index);
+    console.log("index: ", index)
+    console.log(searchData[selectedItem])
   }
 
   return (
@@ -54,8 +55,8 @@ const App: React.FC = () => {
         </div>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew}/>
-          <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
-          <Command selectedItem = {selectedItem} />
+          <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem} selectedIndex = {5}/>
+          <Command selectedItemData = {searchData[selectedItem]} />
         </div>
     </div>
   );
