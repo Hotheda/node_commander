@@ -17,7 +17,7 @@ interface commandItem {
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [searchData, setSearchData] = useState();
-  const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
+  //const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
 
   const [addNew, setAddNew] = useState<boolean>(false)
 
