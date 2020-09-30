@@ -57,7 +57,12 @@ const App: React.FC = () => {
       }
       setSelectedItem(tempElement)
     }else{
-      getData(searchstring);
+      if(searchstring==="/add"){
+        setAddNew(true)
+      }else{
+        getData(searchstring);
+        setSelectedMenuItem(0)
+      }
     }
   }
 
@@ -88,6 +93,10 @@ const App: React.FC = () => {
       setSelectedMenuItem( selectedMenuItem - 1 )
     }else if (e.key === "ArrowDown" && selectedMenuItem<searchData.length - 1 ){
       setSelectedMenuItem( selectedMenuItem + 1 )
+    }else if (e.key === "Escape" && addNew === true){
+      setAddNew(false)
+    }else{
+      console.log(e.key)
     }
   }
 

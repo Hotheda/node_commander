@@ -13,7 +13,7 @@ const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, se
        
     if(searchData)
         dataToPrint = searchData.map((item:any, index:number) => {
-        if(selectedItem == index){
+        if(selectedItem === index){
             return(
                 <li className = "result_listitem selected_listitem" key = {item.id} >
                     <p>{item.name.toUpperCase()}</p>
