@@ -15,11 +15,11 @@ interface commandItem {
 }
 
 const App: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<any>(null)
+  const [selectedItem, setSelectedItem] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})
   const [searchData, setSearchData] = useState();
-  //const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
-
+  
   const [addNew, setAddNew] = useState<boolean>(false)
+  const [selectedElement, setSelectedElement] = (useState<string>("Search"))
 
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
@@ -33,11 +33,55 @@ const App: React.FC = () => {
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
-    getData(searchstring);
+    var tempElement:any = {...selectedItem}
+    if(addNew){
+      if(selectedElement==="NAME"){
+        tempElement.name = searchstring;
+        setSelectedElement("PLATFORM")
+      }else if(selectedElement==="PLATFORM"){
+        tempElement.platform = searchstring;
+        setSelectedElement("DESCRIPTION")
+      }
+      else if(selectedElement==="DESCRIPTION"){
+        tempElement.description = searchstring;
+        setSelectedElement("OPTIONS")
+      }else if(selectedElement==="OPTIONS"){
+        tempElement.options = searchstring;
+        setSelectedElement("EXAMPLE")
+      }else if(selectedElement==="EXAMPLE"){
+        tempElement.howTo = searchstring;
+        postData(tempElement);
+        setAddNew(false)
+      }
+      setSelectedItem(tempElement)
+    }else{
+      getData(searchstring);
+    }
+  }
+
+  const postData = (tempElement:object)=>{
+    fetch('http://odehammar.com:5555/addpost', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tempElement)
+    })
+    .then(res => { return res.json() })
+    .then(data => console.log(data))
+    .catch(err => console.log("Error: ", err))
+}
+  
+  if(addNew){
+    if(selectedElement==="Search"){
+      setSelectedElement("NAME")
+      setSelectedItem({name:"",platform:"",description:"",options:"",howTo:""})
+    }
+  }else{
+    if(selectedElement !== "Search"){
+      setSelectedElement("Search")
+    }
   }
 
   const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
-    console.log(e.key);
   }
 
   const selectItem = (item:any) => {
@@ -52,8 +96,8 @@ const App: React.FC = () => {
           <p>NODE COMMANDER v1.0 </p>
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
+          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
-          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew}/>
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
           <Command selectedItem = {selectedItem} />
         </div>
