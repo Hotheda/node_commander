@@ -2,17 +2,17 @@ import React from "react";
 
 
 interface Props {
-    selectedItem:any;
+    selectedItemData:any;
 }
 
 
-const Command:React.FC<Props> = ({selectedItem}) => {
-    const allData = selectedItem;
+const Command:React.FC<Props> = ({selectedItemData}) => {
+    const allData = selectedItemData;
     
     
     const deleteCommand = () => {
         if(window.confirm('DELETE POST ?')){
-            fetch("http://192.168.1.153:5555/deletepost/"+selectedItem.id,{
+            fetch("http://192.168.1.153:5555/deletepost/"+selectedItemData.id,{
                 method: "DELETE"
             })
             .then(res => { return res.json() })

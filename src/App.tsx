@@ -15,9 +15,10 @@ interface commandItem {
 }
 
 const App: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})
-  const [searchData, setSearchData] = useState();
-  
+  const [selectedItem, setSelectedItem] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})  
+  const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
+  const [searchData, setSearchData] = useState([]);
+
   const [addNew, setAddNew] = useState<boolean>(false)
   const [selectedElement, setSelectedElement] = (useState<string>("Search"))
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
               setSearchData(data);
         })
         .catch(err => console.log("Error ", err))
+        setSelectedItem(0)
   }
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
@@ -82,11 +84,15 @@ const App: React.FC = () => {
   }
 
   const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
+    if( e.key==="ArrowUp" && selectedMenuItem > 0 ){
+      setSelectedMenuItem( selectedMenuItem - 1 )
+    }else if (e.key === "ArrowDown" && selectedMenuItem<searchData.length - 1 ){
+      setSelectedMenuItem( selectedMenuItem + 1 )
+    }
   }
 
-  const selectItem = (item:any) => {
-    setSelectedItem(item);
-
+  const selectItem = (index:number) => {
+    setSelectedItem(index);
   }
 
   return (
@@ -98,8 +104,8 @@ const App: React.FC = () => {
         </div>
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
-          <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
-          <Command selectedItem = {selectedItem} />
+          <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
+          {addNew ? <Command selectedItemData = {selectedItem} /> : <Command selectedItemData = {searchData[selectedMenuItem]} /> }
         </div>
     </div>
   );
