@@ -96,8 +96,8 @@ const App: React.FC = () => {
           <p>NODE COMMANDER v1.0 </p>
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
-          <AddCommand addNew={addNew} setAddNew={setAddNew}/>
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
+          <AddCommand addNew={addNew} setAddNew={setAddNew}/>
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
           <Command selectedItem = {selectedItem} />
         </div>

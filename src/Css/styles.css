@@ -81,14 +81,12 @@ input{
 }
 
 .add_command_button_div{
-    position: absolute;
-    right: 5vw;
-    top: 5vh;
-    box-shadow: 3px 3px rgb(0, 0, 0);
+    width: fit-content;
+    margin: 0 10% 0 auto;
 }
 
 .search_div{
-    padding: 3vh 0 5vh 0;
+    padding: 3vh 0 1vh 0;
     width: 100%;
 }
 .search_input_div{
