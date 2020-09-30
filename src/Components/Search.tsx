@@ -2,19 +2,23 @@ import React, { useState } from 'react'
 interface ClickProps {
     searchForBtn: (searchstring: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
     handleKeypress: (e:React.KeyboardEvent<HTMLInputElement>) => void,
-    addNew: boolean
+    addNew: boolean,
+    selectedElement: string
 }
 
-const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => {
+const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, selectedElement}) => {
     const [searchString, setSearchString] = useState<string>("")
-    const [inputlabel, setInputLabel] = useState<string>("Search :>")
+    //const [inputlabel, setInputLabel] = useState<string>("Search :>")
+    //const inputlabel = selectedElement;
 
     const focusInput = (target:EventTarget & HTMLInputElement) => {
-        if(!addNew){
-            target.focus()
+        if(true){  //!addNew){
+            target.focus();
             target.selectionStart = searchString.length;
         }
     }
+    //var InputLabel:string = selectedElement;
+    console.log(selectedElement)
 
     return(
         <div className="search_div">
@@ -32,7 +36,7 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew}) => 
                                     handleKeypress(e)
                                 }}
                             />
-                            <p className = "search_input_paragraf">{inputlabel}{searchString}.</p>
+                            <p className = "search_input_paragraf">{selectedElement} :&gt;{searchString}.</p>
                         </div>
                         <button className="search_button button" onClick = {(e) => searchForBtn(searchString, e)} >&lt; Search &gt;</button>
                 </div>

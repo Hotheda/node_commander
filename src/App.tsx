@@ -17,9 +17,9 @@ interface commandItem {
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [searchData, setSearchData] = useState();
-  const [selectedElement, setSelectedElement] = (useState<string>("searchInput"))
-
+  
   const [addNew, setAddNew] = useState<boolean>(false)
+  const [selectedElement, setSelectedElement] = (useState<string>("Search"))
 
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
@@ -33,7 +33,22 @@ const App: React.FC = () => {
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
-    getData(searchstring);
+    if(addNew){
+      setSelectedElement("NAME")
+    }else{
+      setSelectedElement("Search")
+      getData(searchstring);
+    }
+  }
+
+  if(addNew){
+    if(selectedElement==="Search"){
+      setSelectedElement("NAME")
+    }
+  }else{
+    if(selectedElement !== "Search"){
+      setSelectedElement("Search")
+    }
   }
 
   const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
@@ -53,7 +68,7 @@ const App: React.FC = () => {
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
           <AddCommand addNew={addNew} setAddNew={setAddNew}/>
-          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew}/>
+          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedItem}/>
           <Command selectedItem = {selectedItem} />
         </div>
