@@ -190,12 +190,13 @@ input{
     color: yellowgreen;
 }
 
+/*
 .command_background p::after{
     position: absolute;
     content: "=";
     left: -2.5vw;
     bottom: 0;
-}
+}*/
 
 .command_topic{
     position: relative;

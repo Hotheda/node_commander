@@ -17,8 +17,6 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, sele
             target.selectionStart = searchString.length;
         }
     }
-    //var InputLabel:string = selectedElement;
-    console.log(selectedElement)
 
     return(
         <div className="search_div">
@@ -38,7 +36,11 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, sele
                             />
                             <p className = "search_input_paragraf">{selectedElement} :&gt;{searchString}.</p>
                         </div>
-                        <button className="search_button button" onClick = {(e) => searchForBtn(searchString, e)} >&lt; Search &gt;</button>
+                        <button className="search_button button" onClick = {(e) => {
+                            searchForBtn(searchString, e)
+                            setSearchString("")
+                            }}
+                         >&lt; Search &gt;</button>
                 </div>
             </form>
         </div>

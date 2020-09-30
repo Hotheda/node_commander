@@ -25,12 +25,12 @@ const Command:React.FC<Props> = ({selectedItem}) => {
     return(
         <div>
             <div className="command_background">
-                <p className = "command_topic topic">{allData.name}</p>
-                <p className = "command_platform topic">{allData.platform}</p>
-                <p className = "command_description topic" >{allData.description}</p>
-                <p className = "command_options topic" >{allData.options}</p>
-                <p className = "command_example topic" >{allData.howTo}</p>
-                <p className = "command_example topic" >{allData.id}</p>
+                <p className = "command_topic topic">= {allData.name} </p>
+                <p className = "command_platform topic">= {allData.platform} </p>
+                <p className = "command_description topic" >= {allData.description} </p>
+                <p className = "command_options topic" >= {allData.options} </p>
+                <p className = "command_example topic" >= {allData.howTo} </p>
+                <p className = "command_example topic" >= {allData.id} </p>
                 <div className="command_buttons_div">
                     <button className="button" >Edit</button>
                     <button className="button" onClick={() => deleteCommand()} >DELETE</button>
