@@ -7,7 +7,6 @@ interface Props {
 }
 
 const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, selectedIndex}) => {
-    //console.log("From searchlist: " + searchData)
     
     var dataToPrint = [];
        
@@ -33,7 +32,6 @@ const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, se
     return(
         <div className="result_background">
             <div className = "result_div">
-                {/*<h3 className = "result_topic">-=&lt; R E S U L T S &gt;=-</h3>*/}
                 <ul className = "result_list">
                     <li className = "result_listitem result_listtopic" >
                         <p>NAME</p>

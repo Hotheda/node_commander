@@ -96,7 +96,7 @@ const App: React.FC = () => {
     }else if (e.key === "Escape" && addNew === true){
       setAddNew(false)
     }else{
-      console.log(e.key)
+      //console.log(e.key)
     }
   }
 

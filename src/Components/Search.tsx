@@ -8,14 +8,10 @@ interface ClickProps {
 
 const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, selectedElement}) => {
     const [searchString, setSearchString] = useState<string>("")
-    //const [inputlabel, setInputLabel] = useState<string>("Search :>")
-    //const inputlabel = selectedElement;
 
     const focusInput = (target:EventTarget & HTMLInputElement) => {
-        if(true){  //!addNew){
-            target.focus();
-            target.selectionStart = searchString.length;
-        }
+        target.focus();
+        target.selectionStart = searchString.length;
     }
 
     return(
