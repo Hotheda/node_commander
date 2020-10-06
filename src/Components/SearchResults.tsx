@@ -9,7 +9,7 @@ interface Props {
 const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, selectedIndex}) => {
     
     var dataToPrint = [];
-       
+
     if(searchData)
         dataToPrint = searchData.map((item:any, index:number) => {
         if(selectedItem === index){

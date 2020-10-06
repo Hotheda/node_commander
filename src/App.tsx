@@ -14,6 +14,10 @@ interface commandItem {
   howTo:string
 }
 
+    /**
+     * Create login in node backend and enter credentials to edit or delete data from DB
+     */
+
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})  
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
@@ -21,6 +25,8 @@ const App: React.FC = () => {
 
   const [addNew, setAddNew] = useState<boolean>(false)
   const [selectedElement, setSelectedElement] = (useState<string>("Search"))
+
+  const [admin, setAdmin] = useState<boolean>(false)
 
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
@@ -112,9 +118,9 @@ const App: React.FC = () => {
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
-          <AddCommand addNew={addNew} setAddNew={setAddNew}/>
+          {admin ? <AddCommand addNew={addNew} setAddNew={setAddNew} /> : null}
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
-          {addNew ? <Command selectedItemData = {selectedItem} /> : <Command selectedItemData = {searchData[selectedMenuItem]} /> }
+          {addNew ? <Command selectedItemData = {selectedItem} admin={admin}/> : <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} /> }
         </div>
     </div>
   );

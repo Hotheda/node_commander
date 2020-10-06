@@ -3,10 +3,11 @@ import React from "react";
 
 interface Props {
     selectedItemData:any;
+    admin: boolean;
 }
 
 
-const Command:React.FC<Props> = ({selectedItemData}) => {
+const Command:React.FC<Props> = ({selectedItemData, admin}) => {
     const allData = selectedItemData;
     
     
@@ -30,10 +31,12 @@ const Command:React.FC<Props> = ({selectedItemData}) => {
                 <p className = "command_description topic" >= {allData.description} </p>
                 <p className = "command_options topic" >= {allData.options} </p>
                 <p className = "command_example topic" >= {allData.howTo} </p>
-                <div className="command_buttons_div">
-                    <button className="button" >Edit</button>
-                    <button className="button" onClick={() => deleteCommand()} >DELETE</button>
-                </div>
+                {admin ? 
+                    <div className="command_buttons_div">
+                        <button className="button" >Edit</button>
+                        <button className="button" onClick={() => deleteCommand()} >DELETE</button>
+                    </div>
+                : null}
             </div>
         </div>
     )
