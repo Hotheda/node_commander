@@ -16,6 +16,7 @@ interface commandItem {
 
     /**
      * Create login in node backend and enter credentials to edit or delete data from DB
+     * ( admin state )
      */
 
 const App: React.FC = () => {
