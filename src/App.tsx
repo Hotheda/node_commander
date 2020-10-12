@@ -108,7 +108,7 @@ const App: React.FC = () => {
   }
 
   const selectItem = (index:number) => {
-    setSelectedItem(index);
+    setSelectedMenuItem(index);
   }
 
   return (

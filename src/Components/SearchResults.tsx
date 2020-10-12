@@ -12,22 +12,22 @@ const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, se
 
     if(searchData)
         dataToPrint = searchData.map((item:any, index:number) => {
-        if(selectedItem === index){
+            if(selectedItem === index){
+                return(
+                    <li className = "result_listitem selected_listitem" key = {item.id} >
+                        <p>{item.name.toUpperCase()}</p>
+                        <p>{item.platform.toUpperCase()}</p>
+                    </li>
+                )
+            }
+
             return(
-                <li className = "result_listitem selected_listitem" key = {item.id} >
+                <li className = "result_listitem" key = {item.id} onClick = {()=>{selectItem(index)}} >
                     <p>{item.name.toUpperCase()}</p>
                     <p>{item.platform.toUpperCase()}</p>
                 </li>
-            )
-        }
-
-        return(
-            <li className = "result_listitem" key = {item.id} onClick = {()=>{selectItem(index)}} >
-                <p>{item.name.toUpperCase()}</p>
-                <p>{item.platform.toUpperCase()}</p>
-            </li>
-            )
-        })
+                )
+            })
         
     return(
         <div className="result_background">
