@@ -20,7 +20,7 @@ interface commandItem {
      */
 
 const App: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})  
+  const [editItemData, setEditItemData] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})  
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
   const [searchData, setSearchData] = useState([]);
 
@@ -37,12 +37,12 @@ const App: React.FC = () => {
               setSearchData(data);
         })
         .catch(err => console.log("Error ", err))
-        setSelectedItem(0)
+        setSelectedMenuItem(0)
   }
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
-    var tempElement:any = {...selectedItem}
+    var tempElement:any = {...editItemData}
     if(addNew){
       if(selectedElement==="NAME"){
         tempElement.name = searchstring;
@@ -62,7 +62,7 @@ const App: React.FC = () => {
         postData(tempElement);
         setAddNew(false)
       }
-      setSelectedItem(tempElement)
+      setEditItemData(tempElement)
     }else{
       if(searchstring==="/add"){
         setAddNew(true)
@@ -87,7 +87,7 @@ const App: React.FC = () => {
   if(addNew){
     if(selectedElement==="Search"){
       setSelectedElement("NAME")
-      setSelectedItem({name:"",platform:"",description:"",options:"",howTo:""})
+      setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
     }
   }else{
     if(selectedElement !== "Search"){
@@ -121,7 +121,7 @@ const App: React.FC = () => {
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
           {admin ? <AddCommand addNew={addNew} setAddNew={setAddNew} /> : null}
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
-          {addNew ? <Command selectedItemData = {selectedItem} admin={admin}/> : <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} /> }
+          {addNew ? <Command selectedItemData = {editItemData} admin={admin}/> : <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} /> }
         </div>
     </div>
   );

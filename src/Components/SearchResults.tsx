@@ -28,7 +28,6 @@ const SearchResults:React.FC<Props> = ({searchData, selectItem, selectedItem, se
                 </li>
                 )
             })
-        
     return(
         <div className="result_background">
             <div className = "result_div">
