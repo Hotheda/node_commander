@@ -66,6 +66,10 @@ const App: React.FC = () => {
     }else{
       if(searchstring==="/add"){
         setAddNew(true)
+      }else if(searchstring==="/login"){
+        setAdmin(true)
+      }else if(searchstring==="/logout"){
+        setAdmin(false)      
       }else{
         getData(searchstring);
         setSelectedMenuItem(0)
