@@ -20,6 +20,8 @@ const App: React.FC = () => {
 
   const [admin, setAdmin] = useState<boolean>(false)
 
+  console.log(editItemData)
+
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
         .then(res => res.json())
@@ -30,6 +32,7 @@ const App: React.FC = () => {
         .catch(err => console.log("Error ", err))
         setSelectedMenuItem(0)
   }
+
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
