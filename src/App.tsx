@@ -3,16 +3,7 @@ import AddCommand from './Components/AddCommand';
 import Command from './Components/Command'
 import Search from './Components/Search'
 import SearchResults from './Components/SearchResults';
-
-// går att använda för att inte få undefined?
-interface commandItem {
-  id:number,
-  name:string,
-  platform:string,
-  description:string,
-  options:string,
-  howTo:string
-}
+import DBCommandObject from "./Components/DBCommandObject"
 
     /**
      * Create login in node backend and enter credentials to edit or delete data from DB
@@ -20,7 +11,7 @@ interface commandItem {
      */
 
 const App: React.FC = () => {
-  const [editItemData, setEditItemData] = useState<any>({name:"",platform:"",description:"",options:"",howTo:""})  
+  const [editItemData, setEditItemData] = useState<DBCommandObject>() //<any>({name:"",platform:"",description:"",options:"",howTo:""})  
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
   const [searchData, setSearchData] = useState([]);
 
