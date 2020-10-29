@@ -20,8 +20,6 @@ const App: React.FC = () => {
 
   const [admin, setAdmin] = useState<boolean>(false)
 
-  console.log(editItemData)
-
   const getData = (searchString:string) => {
     fetch('http://odehammar.com:5555/getposts/'+searchString)
         .then(res => res.json())
@@ -36,7 +34,7 @@ const App: React.FC = () => {
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
-    var tempElement:any = {...editItemData}
+    var tempElement:DBCommandObject|any = {...editItemData}
     if(addNew){
       if(selectedElement==="NAME"){
         tempElement.name = searchstring;
@@ -53,8 +51,13 @@ const App: React.FC = () => {
         setSelectedElement("EXAMPLE")
       }else if(selectedElement==="EXAMPLE"){
         tempElement.howTo = searchstring;
-        postData(tempElement);
-        setAddNew(false)
+        if(tempElement.id){
+          console.log("id: "+tempElement.id)
+        }else{
+          console.log("No id: ("+tempElement.id+")")
+          //postData(tempElement);
+          setAddNew(false)
+        }
       }
       setEditItemData(tempElement)
     }else{
@@ -71,15 +74,26 @@ const App: React.FC = () => {
     }
   }
 
-  const postData = (tempElement:object)=>{
-    fetch('http://odehammar.com:5555/addpost', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(tempElement)
-    })
-    .then(res => { return res.json() })
-    .then(data => console.log(data))
-    .catch(err => console.log("Error: ", err))
+  const postData = (tempElement:DBCommandObject)=>{
+    if(tempElement.id){
+      fetch('http://odehammar.com:5555/updatepost/'+tempElement.id, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(tempElement)
+      })
+      .then(res => { return res.json() })
+      .then(data => console.log(data))
+      .catch(err => console.log("Error: ", err))
+    }else{
+      fetch('http://odehammar.com:5555/addpost', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(tempElement)
+      })
+      .then(res => { return res.json() })
+      .then(data => console.log(data))
+      .catch(err => console.log("Error: ", err))
+    }
 }
   
   if(addNew){
