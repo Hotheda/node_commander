@@ -123,8 +123,11 @@ const App: React.FC = () => {
       setSelectedMenuItem( selectedMenuItem + 1 )
     }else if (e.key === "Escape" && addNew === true){
       setAddNew(false)
+    }else if (e.key === "Backspace" && addNew === true){
+      if(editString !== "")
+        setEditString("")
     }else{
-      //console.log(e.key)
+      console.log(e.key)
     }
   }
 
