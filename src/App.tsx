@@ -14,6 +14,7 @@ const App: React.FC = () => {
   const [editItemData, setEditItemData] = useState<DBCommandObject>() //<any>({name:"",platform:"",description:"",options:"",howTo:""})  
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
   const [searchData, setSearchData] = useState([]);
+  const [editString, setEditString] = useState<string>("");
 
   const [addNew, setAddNew] = useState<boolean>(false)
   const [selectedElement, setSelectedElement] = (useState<string>("Search"))
@@ -36,21 +37,27 @@ const App: React.FC = () => {
     e.preventDefault();
     var tempElement:DBCommandObject|any = {...editItemData}
     if(addNew){
+      console.log(tempElement)      
       if(selectedElement==="NAME"){
         tempElement.name = searchstring;
+        setEditString(tempElement.platform)
         setSelectedElement("PLATFORM")
       }else if(selectedElement==="PLATFORM"){
         tempElement.platform = searchstring;
+        setEditString(tempElement.description)
         setSelectedElement("DESCRIPTION")
       }
       else if(selectedElement==="DESCRIPTION"){
         tempElement.description = searchstring;
+        setEditString(tempElement.options)
         setSelectedElement("OPTIONS")
       }else if(selectedElement==="OPTIONS"){
         tempElement.options = searchstring;
+        setEditString(tempElement.example)
         setSelectedElement("EXAMPLE")
       }else if(selectedElement==="EXAMPLE"){
         tempElement.howTo = searchstring;
+        setEditString("")
         postData(tempElement);
         setAddNew(false)
       }
@@ -98,7 +105,10 @@ const App: React.FC = () => {
   if(addNew){
     if(selectedElement==="Search"){
       setSelectedElement("NAME")
-      //setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
+      if(searchData[selectedMenuItem]){
+        var tempdata:DBCommandObject = searchData[selectedMenuItem] 
+        setEditString(tempdata.name)
+      }
     }
   }else{
     if(selectedElement !== "Search"){
@@ -129,7 +139,7 @@ const App: React.FC = () => {
           <p>NODE COMMANDER v1.0 </p>
           <p>(c) 1987 HedaSoft, ALL RIGHTS RESERVED</p>
         </div>
-          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement}/>
+          <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement} editString = {editString}/>
           {admin ? <AddCommand addNew={addNew} setAddNew={setAddNew} /> : null}
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
           {addNew ? <Command selectedItemData = {editItemData} admin={admin}/> : <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} /> }

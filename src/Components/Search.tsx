@@ -3,15 +3,21 @@ interface ClickProps {
     searchForBtn: (searchstring: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
     handleKeypress: (e:React.KeyboardEvent<HTMLInputElement>) => void,
     addNew: boolean,
-    selectedElement: string
+    selectedElement: string,
+    editString: string
 }
 
-const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, selectedElement}) => {
+const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, selectedElement, editString}) => {
     const [searchString, setSearchString] = useState<string>("")
 
     const focusInput = (target:EventTarget & HTMLInputElement) => {
         target.focus();
         target.selectionStart = searchString.length;
+    }
+
+    if(editString !== "" && searchString === ""){
+        if(editString)
+            setSearchString(editString)
     }
 
     return(
