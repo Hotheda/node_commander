@@ -51,18 +51,17 @@ const App: React.FC = () => {
         setSelectedElement("EXAMPLE")
       }else if(selectedElement==="EXAMPLE"){
         tempElement.howTo = searchstring;
-        if(tempElement.id){
-          console.log("id: "+tempElement.id)
-        }else{
-          console.log("No id: ("+tempElement.id+")")
-          //postData(tempElement);
-          setAddNew(false)
-        }
+        postData(tempElement);
+        setAddNew(false)
       }
       setEditItemData(tempElement)
     }else{
       if(searchstring==="/add"){
         setAddNew(true)
+        setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
+      }else if(searchstring==="/edit"){
+        setAddNew(true)
+        setEditItemData(searchData[selectedMenuItem])
       }else if(searchstring==="/login"){
         setAdmin(true)
       }else if(searchstring==="/logout"){
@@ -99,7 +98,7 @@ const App: React.FC = () => {
   if(addNew){
     if(selectedElement==="Search"){
       setSelectedElement("NAME")
-      setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
+      //setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
     }
   }else{
     if(selectedElement !== "Search"){
