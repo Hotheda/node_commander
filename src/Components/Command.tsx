@@ -4,10 +4,11 @@ import React from "react";
 interface Props {
     selectedItemData:any;
     admin: boolean;
+    addNew: boolean;
 }
 
 
-const Command:React.FC<Props> = ({selectedItemData, admin}) => {
+const Command:React.FC<Props> = ({selectedItemData, admin, addNew}) => {
     const allData = selectedItemData;
     
     
@@ -31,7 +32,7 @@ const Command:React.FC<Props> = ({selectedItemData, admin}) => {
                 <p className = "command_description topic" >= {allData.description} </p>
                 <p className = "command_options topic" >= {allData.options} </p>
                 <p className = "command_example topic" >= {allData.howTo} </p>
-                {admin ? 
+                {(admin && !addNew) ? 
                     <div className="command_buttons_div">
                         <button className="button" >Edit</button>
                         <button className="button" onClick={() => deleteCommand()} >DELETE</button>

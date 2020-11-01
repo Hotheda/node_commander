@@ -32,6 +32,11 @@ const App: React.FC = () => {
         setSelectedMenuItem(0)
   }
 
+  const editItem = () => {
+    setEditItemData(searchData[selectedMenuItem])
+    setAddNew(true)
+  }
+
 
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
@@ -66,8 +71,7 @@ const App: React.FC = () => {
         setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
         setAddNew(true)
       }else if(searchstring==="/edit"){
-        setEditItemData(searchData[selectedMenuItem])
-        setAddNew(true)
+        editItem()
       }else if(searchstring==="/login"){
         setAdmin(true)
       }else if(searchstring==="/logout"){
@@ -139,6 +143,11 @@ const App: React.FC = () => {
     setSelectedMenuItem(index);
   }
 
+  var selectedOrEditItem = editItemData;
+  if(!addNew){
+    selectedOrEditItem = searchData[selectedMenuItem]
+  }
+
   return (
     <div className="BaseApp">
         <div className="dos_background">
@@ -149,7 +158,9 @@ const App: React.FC = () => {
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement} editString = {editString}/>
           {admin ? <AddCommand addNew={addNew} setAddNew={setAddNew} /> : null}
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
-          {addNew ? <Command selectedItemData = {editItemData} admin={admin}/> : <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} /> }
+          {/* addNew ? <Command selectedItemData = {editItemData} admin={admin} addNew = {addNew}/> :
+            <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} addNew = {addNew} /> */}
+          <Command selectedItemData = {selectedOrEditItem} admin={admin} addNew = {addNew} />
         </div>
     </div>
   );
