@@ -5,10 +5,11 @@ interface Props {
     selectedItemData:any;
     admin: boolean;
     addNew: boolean;
+    editItem: () => void
 }
 
 
-const Command:React.FC<Props> = ({selectedItemData, admin, addNew}) => {
+const Command:React.FC<Props> = ({selectedItemData, admin, addNew, editItem}) => {
     const allData = selectedItemData;
     
     
@@ -34,7 +35,7 @@ const Command:React.FC<Props> = ({selectedItemData, admin, addNew}) => {
                 <p className = "command_example topic" >= {allData.howTo} </p>
                 {(admin && !addNew) ? 
                     <div className="command_buttons_div">
-                        <button className="button" >Edit</button>
+                        <button className="button" onClick={() => editItem()} >Edit</button>
                         <button className="button" onClick={() => deleteCommand()} >DELETE</button>
                     </div>
                 : null}

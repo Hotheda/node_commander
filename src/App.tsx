@@ -158,9 +158,7 @@ const App: React.FC = () => {
           <Search searchForBtn = {searchForBtn} handleKeypress = {handleKeyPress} addNew={addNew} selectedElement = {selectedElement} editString = {editString}/>
           {admin ? <AddCommand addNew={addNew} setAddNew={setAddNew} /> : null}
           <SearchResults searchData = {searchData} selectItem = {selectItem}  selectedItem = {selectedMenuItem} selectedIndex = {5}/>
-          {/* addNew ? <Command selectedItemData = {editItemData} admin={admin} addNew = {addNew}/> :
-            <Command selectedItemData = {searchData[selectedMenuItem]} admin={admin} addNew = {addNew} /> */}
-          <Command selectedItemData = {selectedOrEditItem} admin={admin} addNew = {addNew} />
+          <Command selectedItemData = {selectedOrEditItem} admin={admin} addNew = {addNew} editItem = {editItem} />
         </div>
     </div>
   );

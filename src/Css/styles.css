@@ -33,6 +33,11 @@ body{
     width: 7vw;
     height: 2vw;
 }
+.button:active{
+    background-color:rgb(135, 135, 135);;
+    box-shadow: 0px 0px yellowgreen;
+    transform: translate(3px,3px);
+}
 
 input{
     font-family: monospace;
