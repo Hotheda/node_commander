@@ -156,7 +156,6 @@ input{
     list-style-type: none;
 }
 .result_listitem{
-    /*position: relative;*/
     display: flex;
     justify-content: center;
 }
@@ -173,13 +172,12 @@ input{
 }
 .result_listitem p{    
     text-align: left;
-    width: 5vw;
     margin: 0 2vw;
-    width: 8vw;
+    width: 10vw;
 }
 .result_listtopic p{
     margin-bottom: 0.6vw;
-    width: 8vw;
+    width: 10vw;
 }
 
 .command_background{
@@ -187,19 +185,10 @@ input{
     color: white;
     width: 20vw;
     margin: 0 10vw 0 20vw;
-    /*bottom: 0vh;*/
 }
 .command_background{
     color: yellowgreen;
 }
-
-/*
-.command_background p::after{
-    position: absolute;
-    content: "=";
-    left: -2.5vw;
-    bottom: 0;
-}*/
 
 .command_topic{
     position: relative;
