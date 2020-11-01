@@ -11,7 +11,7 @@ import DBCommandObject from "./Components/DBCommandObject"
      */
 
 const App: React.FC = () => {
-  const [editItemData, setEditItemData] = useState<DBCommandObject>() //<any>({name:"",platform:"",description:"",options:"",howTo:""})  
+  const [editItemData, setEditItemData] = useState<DBCommandObject>({name:"",platform:"",description:"",options:"",howTo:""})  
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0)
   const [searchData, setSearchData] = useState([]);
   const [editString, setEditString] = useState<string>("");
@@ -36,8 +36,7 @@ const App: React.FC = () => {
   const searchForBtn = ( searchstring:string, e:React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     e.preventDefault();
     var tempElement:DBCommandObject|any = {...editItemData}
-    if(addNew){
-      console.log(tempElement)      
+    if(addNew){     
       if(selectedElement==="NAME"){
         tempElement.name = searchstring;
         setEditString(tempElement.platform)
@@ -53,7 +52,7 @@ const App: React.FC = () => {
         setSelectedElement("OPTIONS")
       }else if(selectedElement==="OPTIONS"){
         tempElement.options = searchstring;
-        setEditString(tempElement.example)
+        setEditString(tempElement.howTo)
         setSelectedElement("EXAMPLE")
       }else if(selectedElement==="EXAMPLE"){
         tempElement.howTo = searchstring;
@@ -64,11 +63,11 @@ const App: React.FC = () => {
       setEditItemData(tempElement)
     }else{
       if(searchstring==="/add"){
-        setAddNew(true)
         setEditItemData({name:"",platform:"",description:"",options:"",howTo:""})
-      }else if(searchstring==="/edit"){
         setAddNew(true)
+      }else if(searchstring==="/edit"){
         setEditItemData(searchData[selectedMenuItem])
+        setAddNew(true)
       }else if(searchstring==="/login"){
         setAdmin(true)
       }else if(searchstring==="/logout"){
@@ -106,28 +105,33 @@ const App: React.FC = () => {
     if(selectedElement==="Search"){
       setSelectedElement("NAME")
       if(searchData[selectedMenuItem]){
-        var tempdata:DBCommandObject = searchData[selectedMenuItem] 
-        setEditString(tempdata.name)
+        var tempdata:DBCommandObject = searchData[selectedMenuItem]
+        if(editItemData)
+          setEditString(editItemData.name)
       }
     }
   }else{
     if(selectedElement !== "Search"){
+      getData(editItemData.name);
+      setSelectedMenuItem(0)
+      setEditString("")
       setSelectedElement("Search")
     }
   }
 
   const handleKeyPress = ( e:React.KeyboardEvent<HTMLInputElement> ) => {
-    if( e.key==="ArrowUp" && selectedMenuItem > 0 ){
+    if( e.key==="ArrowUp" && selectedMenuItem > 0 && !addNew){
       setSelectedMenuItem( selectedMenuItem - 1 )
-    }else if (e.key === "ArrowDown" && selectedMenuItem<searchData.length - 1 ){
+    }else if (e.key === "ArrowDown" && selectedMenuItem<searchData.length - 1 && !addNew){
       setSelectedMenuItem( selectedMenuItem + 1 )
     }else if (e.key === "Escape" && addNew === true){
+      setEditString("")
       setAddNew(false)
     }else if (e.key === "Backspace" && addNew === true){
       if(editString !== "")
         setEditString("")
     }else{
-      console.log(e.key)
+      //console.log(e.key)
     }
   }
 

@@ -13,7 +13,7 @@ const Command:React.FC<Props> = ({selectedItemData, admin}) => {
     
     const deleteCommand = () => {
         if(window.confirm('DELETE POST ?')){
-            fetch("http://192.168.1.153:5555/deletepost/"+selectedItemData.id,{
+            fetch("http://odehammar.com:5555/deletepost/"+selectedItemData.id,{
                 method: "DELETE"
             })
             .then(res => { return res.json() })

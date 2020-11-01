@@ -15,11 +15,13 @@ const Search:React.FC<ClickProps> = ({searchForBtn, handleKeypress, addNew, sele
         target.selectionStart = searchString.length;
     }
 
-    if(editString !== "" && searchString === ""){
+    if(editString !== "" && searchString === "" && addNew){
         if(editString)
             setSearchString(editString)
     }
-
+    
+    console.log("From search: ", editString)
+        
     return(
         <div className="search_div">
             <h3 className="search_topic"> Search for:  </h3>
